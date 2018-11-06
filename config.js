@@ -7,11 +7,13 @@ var config = {
         teravoz: {
             apiUrl: 'https://api.teravoz.com.br/',
         },
-        database: 'mongodb://localhost:27017/',
+        database: 'mongodb://mongo:27017/teravoz',
       
     }
 }
   
-exports.get = function get(env) {
-return config[env] || config.default;
+module.exports = {
+    get: function (env){
+        return config[env] || config.default;
+    }
 }

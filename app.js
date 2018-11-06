@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-
+var config = require('./config.js').get();
 var indexRouter = require('./controllers/index');
 var webhookRouter = require('./controllers/webhook');
 
@@ -28,7 +28,7 @@ app.use('/webhook', webhookRouter)
 // config MongoDB
 mongoose
 .connect(
-    'mongodb://mongo:27017/teravoz',
+    config.database,
     { useNewUrlParser: true }
   )
   .then(() => console.log('MongoDB Connected'))

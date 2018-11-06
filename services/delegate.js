@@ -1,18 +1,21 @@
-var request = require('request')
-var config = require('./config')
+var request = require('request');
+var config = require('../config.js').get();
 
-module.exports = function delegate(CREDENTIALS, callId){
+
+module.exports = function delegate(credentials, callId, destinationNumber){
+
     url = config.teravoz.apiUrl + 'actions'
-    const credentials = Buffer.from(CREDENTIALS).toString('base64');
+    const formattedCredentials = Buffer.from(credentials).toString('base64');
     const payload ={
             type: "delegate",
             call_id: callId,
-            destination: "900"
+            destination: destinationNumber
     }
+
     request.post({
         url: url,
         headers: {
-            'Authorization': `Basic ${credentials}`
+            'Authorization': `Basic ${formattedCredentials}`
         },
         body: payload,
         json: true
