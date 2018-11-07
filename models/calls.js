@@ -16,8 +16,7 @@ var CallSchema = new Schema(
     },
     direction: {
         type: String,
-        enum: ['inbound', 'outbound', 'internal'],
-        required: true
+        enum: ['inbound', 'outbound', 'internal', ''],
     },
     code: {
         type: Number
@@ -31,6 +30,12 @@ var CallSchema = new Schema(
     theirNumberType:{
         type: String,
         enum: ['free', 'landline', 'mobile', 'internal', 'anonymous', 'command']
+    },
+    actor: {
+        type: String
+    },
+    number: {
+        type: Number
     }
   }
 );

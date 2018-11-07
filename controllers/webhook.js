@@ -10,8 +10,6 @@ router.post('/', function(req, res, next) {
   const event = req.body;
   const credentials = config.credentials.user + ':' + config.credentials.pass
 
-  //console.info('[POST] Recieved Event:', event);
-
   // Check if CallId exists,
     // if exists but another type, set active to false
   Call.findOne({
@@ -22,11 +20,13 @@ router.post('/', function(req, res, next) {
           Call.create({
               type: req.body.type,
               callId: req.body.call_id,
-              direction: req.body.direction,
-              code: parseInt(req.body.code),
-              ourNumber: parseInt(req.body.our_number),
-              theirNumber: parseInt(req.body.their_number),
-              theirNumberType: req.body.their_number_type
+              direction: ((req.body.direction) ? req.body.direction : ''),
+              code: ((req.body.code) ? parseInt(req.body.code) : 0),
+              ourNumber: ((req.body.our_number) ? parseInt(req.body.our_number) : 0),
+              theirNumber: ((req.body.their_number) ? parseInt(req.body.their_number) : 0),
+              theirNumberType: ((req.body.their_number_type) ? req.body.their_number_type : ''),
+              actor: ((req.body.actor) ? req.body.actor : ''),
+              number: ((req.body.number) ? parseInt(req.body.number) : 0)
           }, function (err, result) {
               if (err) return handleError(err);
               //saved
@@ -50,6 +50,7 @@ router.post('/', function(req, res, next) {
       }
     });
   }
+
   res.json({
       status: 'ok'
   });
