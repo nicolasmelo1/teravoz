@@ -11,6 +11,11 @@ On `client/src` you may find configurations for client deployment (frontend)
 
 
 ## Running
+
+- __Frontend__ is available on port `3000`
+- __Backend__ is available on port `5000`
+- __Mongo__ is available on port `27017`
+
 #### Frontend and Backend (Docker)
 To run front and back together just run:
 ```
@@ -29,6 +34,12 @@ $docker-compose run client
 To run JUST the backend inside docker, just run
 ```
 $docker-compose run server
+```
+
+## Testing
+To test the backend just run
+```
+$docker-compose run server test
 ```
 
 ## Stop
