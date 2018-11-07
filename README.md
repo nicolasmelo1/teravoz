@@ -1,6 +1,7 @@
 # Desafio Teravoz
 
-##Configuration
+
+## Configuration
 All of the configuration are on `cofig.js` files located in `server` and `client/src` directories
 
 On `server` you may find configurations for server deployment (backend)
