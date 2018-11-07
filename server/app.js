@@ -5,11 +5,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-var config = require('./config.js').get();
+var config = require('./config.js').get(process.env.NODE_ENV);
 var indexRouter = require('./controllers/index');
 var webhookRouter = require('./controllers/webhook');
-var callsRouter = require('./controllers/call')
+var callsRouter = require('./controllers/call');
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

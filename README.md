@@ -23,20 +23,12 @@ $docker-compose up
 ### Only Frontend (Docker)
 To run JUST the frontend inside docker, just run
 ```
-$cd teravoz/client
-```
-And then:
-```
-$docker-compose up
+$docker-compose run client
 ```
 ### Only Backend (Docker)
 To run JUST the backend inside docker, just run
 ```
-$cd teravoz/server
-```
-And then:
-```
-$docker-compose up
+$docker-compose run server
 ```
 
 ## Stop

@@ -9,6 +9,17 @@ var config = {
         },
         database: 'mongodb://mongo:27017/teravoz',
       
+    },
+    test: {
+        credentials: {
+            user: 'user.nickname',
+            pass: 'user.pass'
+        },
+        teravoz: {
+            apiUrl: 'https://api.teravoz.com.br/',
+        },
+        database: 'mongodb://mongo:27017/testing',
+
     }
 };
   

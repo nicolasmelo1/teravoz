@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Call = require('../models/calls.js');
 
+/** GET Calls - Get number of active and finished calls **/
 router.get('/', function(req, res, next) {
     Call.aggregate().group({ _id: { callId: '$callId', types: '$type'}}).exec(
         function (error, result) {

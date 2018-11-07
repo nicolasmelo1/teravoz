@@ -3,9 +3,12 @@ var router = express.Router();
 var Call = require('../models/calls.js');
 var User = require('../models/users.js');
 var delegate = require('../services/delegate.js');
-var config = require('../config.js').get();
+var config = require('../config.js').get(process.env.NODE_ENV);
 
-/* POST webhook */
+/** POST webhook - Gets events sent from Teravoz
+ * Saves the data on Mongo
+ * Saves user if it's his first call while on standby
+ * **/
 router.post('/', function(req, res, next) {
   const event = req.body;
   const credentials = config.credentials.user + ':' + config.credentials.pass;
@@ -15,7 +18,6 @@ router.post('/', function(req, res, next) {
           type: req.body.type
       }).exec(function (error, result) {
       if (!result) {
-          console.log('teste1');
           Call.create({
               type: req.body.type,
               callId: req.body.call_id,
@@ -27,8 +29,10 @@ router.post('/', function(req, res, next) {
               actor: ((req.body.actor) ? req.body.actor : null),
               number: ((req.body.number) ? parseInt(req.body.number) : 0)
           }, function (err, result) {
-              if (err) console.log(err);
-              //saved
+              if (err) res.json({error: err.errors.type.message})
+              else res.json({
+                  status: 'ok'
+              });
           });
       }
 
@@ -49,10 +53,6 @@ router.post('/', function(req, res, next) {
       }
     });
   }
-
-  res.json({
-      status: 'ok'
-  });
 });
 
 
