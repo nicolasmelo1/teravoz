@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
+
+
 var Schema = mongoose.Schema;
 
 var CallSchema = new Schema(
@@ -16,7 +18,7 @@ var CallSchema = new Schema(
     },
     direction: {
         type: String,
-        enum: ['inbound', 'outbound', 'internal', ''],
+        enum: ['inbound', 'outbound', 'internal', null],
     },
     code: {
         type: Number
@@ -29,7 +31,7 @@ var CallSchema = new Schema(
     },
     theirNumberType:{
         type: String,
-        enum: ['free', 'landline', 'mobile', 'internal', 'anonymous', 'command']
+        enum: ['free', 'landline', 'mobile', 'internal', 'anonymous', 'command', null]
     },
     actor: {
         type: String
