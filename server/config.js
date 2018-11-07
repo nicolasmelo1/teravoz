@@ -10,7 +10,7 @@ var config = {
         database: 'mongodb://mongo:27017/teravoz',
       
     }
-}
+};
   
 module.exports = {
     get: function (env){

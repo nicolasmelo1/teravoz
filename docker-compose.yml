@@ -4,14 +4,25 @@ services:
     image: mongo
     ports:
     - "27017:27017"
-  web:
-    build: .
+  server:
+    build: ./server
     command: npm start
     environment:
       - CONFIG=dev
     volumes:
-      - .:/usr/src/app
+      - ./server:/usr/src/server
     ports:
       - "5000:5000"
     depends_on:
       - mongo
+  client:
+    build: ./client
+    command: npm start
+    environment:
+    - CONFIG=dev
+    volumes:
+    - ./client:/usr/src/client
+    ports:
+    - "3000:3000"
+    depends_on:
+    - server

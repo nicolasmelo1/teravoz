@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  client:
+    build: .
+    command: npm start
+    environment:
+    - CONFIG=dev
+    volumes:
+    - .:/usr/src/client
+    ports:
+    - "3000:3000"
+    depends_on:
+    - server
