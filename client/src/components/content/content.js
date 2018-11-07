@@ -8,15 +8,25 @@ class Content extends Component {
         this.setData = this.setData.bind(this);
         this.state = {
             activeCalls: 0,
-            finishedCalls: 0
+            finishedCalls: 0,
+            na: 1
         };
     }
 
     setData(status, data){
-        this.setState({
-            activeCalls: data.activeCalls,
-            finishedCalls: data.finishedCalls
-        })
+        if (data.activeCalls !==0 || data.finishedCalls !== 0){
+            this.setState({
+                activeCalls: data.activeCalls,
+                finishedCalls: data.finishedCalls,
+                na: 0
+            })
+        } else{
+            this.setState({
+                activeCalls: data.activeCalls,
+                finishedCalls: data.finishedCalls,
+                na: 1
+            })
+        }
     }
 
     componentDidMount() {
@@ -32,10 +42,10 @@ class Content extends Component {
                             data={[
                                 {
                                 hole:0.6,
-                                labels: ['Ativas', 'Finalizadas'],
+                                labels: ['Ativas', 'Finalizadas', 'N/A'],
                                 marker: {line: {color: 'transparent'}},
                                 type: 'pie',
-                                values: [this.state.activeCalls, this.state.finishedCalls]
+                                values: [this.state.activeCalls, this.state.finishedCalls, this.state.na]
                                 }
                             ]}
                             layout = {{
