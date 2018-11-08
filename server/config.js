@@ -8,7 +8,7 @@ var config = {
             apiUrl: 'https://api.teravoz.com.br/',
         },
         database: 'mongodb://mongo:27017/teravoz',
-      
+
     },
     test: {
         credentials: {
@@ -22,9 +22,9 @@ var config = {
 
     }
 };
-  
+
 module.exports = {
-    get: function (env){
+    get: function (env) {
         return config[env] || config.default;
     }
 }

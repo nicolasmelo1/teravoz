@@ -18,6 +18,10 @@
   color: white;
 }
 
+.modebar{
+  opacity: 0 !important;
+}
+
 .App-link {
   color: #61dafb;
 }

@@ -1,39 +1,29 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Plot from 'react-plotly.js';
 import CallsResource from '../../services/calls'
 
 class Content extends Component {
-    constructor (props){
+    constructor(props) {
         super(props);
         this.setData = this.setData.bind(this);
         this.state = {
             activeCalls: 0,
             finishedCalls: 0,
-            na: 1
         };
     }
 
-    setData(status, data){
-        if (data.activeCalls !==0 || data.finishedCalls !== 0){
-            this.setState({
-                activeCalls: data.activeCalls,
-                finishedCalls: data.finishedCalls,
-                na: 0
-            })
-        } else{
-            this.setState({
-                activeCalls: data.activeCalls,
-                finishedCalls: data.finishedCalls,
-                na: 1
-            })
-        }
+    setData(status, data) {
+        this.setState({
+            activeCalls: data.activeCalls,
+            finishedCalls: data.finishedCalls,
+        })
     }
 
     componentDidMount() {
         CallsResource.load(this.setData);
     }
 
-    render () {
+    render() {
         return (
             <main>
                 <div className="row">
@@ -41,14 +31,14 @@ class Content extends Component {
                         <Plot
                             data={[
                                 {
-                                hole:0.6,
-                                labels: ['Ativas', 'Finalizadas', 'N/A'],
-                                marker: {line: {color: 'transparent'}},
-                                type: 'pie',
-                                values: [this.state.activeCalls, this.state.finishedCalls, this.state.na]
+                                    hole: 0.6,
+                                    labels: ['Ativas', 'Finalizadas'],
+                                    marker: {line: {color: 'transparent'}},
+                                    type: 'pie',
+                                    values: [this.state.activeCalls, this.state.finishedCalls]
                                 }
                             ]}
-                            layout = {{
+                            layout={{
                                 hovermode: 'closest',
                                 showlegend: false,
                                 title: 'Chamadas',
@@ -64,7 +54,8 @@ class Content extends Component {
                                 },
                                 displayModeBar: false
                             }}
-                                />
+                        />
+                        If dash is not showing, add some data and reload page...
                     </div>
                 </div>
             </main>

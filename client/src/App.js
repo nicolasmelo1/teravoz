@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import { hot } from 'react-hot-loader';
+import {hot} from 'react-hot-loader';
 
 //components
 import Header from './components/header/header'
@@ -10,22 +10,22 @@ import axios from 'axios';
 import config from './config'
 
 class App extends Component {
-    constructor (props){
+    constructor(props) {
         super(props);
         axios.defaults.baseURL = config.get().serverHost;
     }
 
     render() {
-    return (
-      <div className="full-height">
-        <Header/>
-            <div className="container-fluid">
-                <Content/>
+        return (
+            <div className="full-height">
+                <Header/>
+                <div className="container-fluid">
+                    <Content/>
+                </div>
+                <Footer/>
             </div>
-        <Footer/>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default hot(module)(App);
